@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by anonymous (http://jsbin.com/keviyokara/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+</head>
+<body>
+
+<script id="jsbin-javascript">
+var Article = Backbone.Model;
+
+var article = new Article({
+  content:"start"
+});
+
+
+var ArticleView = Backbone.View.extend({
+  el: "body",
+  initialize: function() {
+    _.bindAll(this,"updateContent");
+    this.model.bind("change",this.updateContent);
+    this.updateContent();
+  },
+  updateContent: function() {
+    console.log(this.model.get("content"));
+  }
+});
+
+
+
+var av = new ArticleView({model:article});
+article.set({content: 'eeawef'});
+</script>
+</body>
+</html>
